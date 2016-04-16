@@ -2,7 +2,7 @@ var Vec3 = require("../src/math/Vec3");
 var HollowSphere = require('../src/shapes/HollowSphere');
 
 var almostEqual = function(numA, numB, precision) {
-    if(precision===undefined){
+    if(precision === undefined){
         precision = 1e-6;
     }
     return Math.abs(numA - numB) < precision;
@@ -15,8 +15,12 @@ module.exports = {
         test.done();
     },
     updateBoundingSphereRadius: function(test) {
-        test.equal(new HollowSphere(10).updateBoundingSphereRadius(), 10);
-        test.equal(new HollowSphere(3).updateBoundingSphereRadius(), 3);
+        var doTest = function(hollowSphere, expected) {
+            hollowSphere.updateBoundingSphereRadius();
+            test.equal(hollowSphere.boundingSphereRadius, expected);
+        };
+        doTest(new HollowSphere(10), 10);
+        doTest(new HollowSphere(3), 3);
         test.done();
     },
     calculateLocalInertia: function(test) {
