@@ -10,3 +10,6 @@ node_modules/*
 
 # File system
 .DS_Store
+
+# Vim swap files
+.*.sw?
